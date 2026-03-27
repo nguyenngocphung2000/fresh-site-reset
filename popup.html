@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Fresh Site Reset</title>
+    <link
+      rel="stylesheet"
+      href="popup.css"
+    />
+  </head>
+  <body>
+    <main class="popup-shell">
+      <section class="card">
+        <div class="card-content">
+          <header class="brand">
+            <div class="brand-mark">
+              <img
+                src="icons/icon.svg"
+                alt="Fresh Site Reset"
+              />
+            </div>
+            <div class="brand-copy">
+              <h1>Fresh Site Reset</h1>
+              <p>Dọn dữ liệu website hiện tại một cách an toàn</p>
+            </div>
+          </header>
+
+          <section class="hero">
+            <h2 class="hero-title">Làm mới trang đang mở</h2>
+            <p class="hero-text">
+              Xóa cookies, storage, cache và lịch sử liên quan trực tiếp đến
+              domain của tab hiện tại, rồi tự động tải lại trang ngay lập tức.
+            </p>
+          </section>
+
+          <section class="info-panel">
+            <div class="info-icon">↻</div>
+            <div class="info-content">
+              <strong>Chỉ tác động đúng website hiện tại</strong>
+              <span>
+                Dữ liệu, lịch sử và phiên đăng nhập của các website khác vẫn
+                được giữ nguyên.
+              </span>
+            </div>
+          </section>
+
+          <button
+            id="refreshSiteButton"
+            class="primary-button"
+          >
+            Làm mới trang này
+          </button>
+
+          <div
+            id="status"
+            class="status"
+          ></div>
+
+          <div class="footer">Designed by Nothing</div>
+        </div>
+      </section>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
