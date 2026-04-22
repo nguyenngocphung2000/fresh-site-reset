@@ -68,8 +68,8 @@ body {
 }
 
 .brand-mark img {
-  width: 34px;
-  height: 34px;
+  width: 54px;
+  height: 54px;
   filter: drop-shadow(0 0 10px var(--accent-orange-glow));
 }
 
@@ -192,6 +192,7 @@ body {
   opacity: 0.9;
 }
 
+/* Footer */
 .footer {
   text-align: center;
   font-size: 10px;

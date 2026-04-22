@@ -2,10 +2,10 @@
   "manifest_version": 3,
   "name": "Fresh Site Reset",
   "short_name": "Site Reset",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Xóa sạch dữ liệu của website trong tab hiện tại rồi tự động tải lại trang.",
   "author": "Nothing",
-  "homepage_url": "https://example.com/nothing",
+  "homepage_url": "https://ngocphung.pages.dev",
   "permissions": [
     "tabs",
     "cookies",
