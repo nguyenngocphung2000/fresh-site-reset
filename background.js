@@ -40,7 +40,6 @@ async function clearDomainHistory(hostname) {
     try {
       await chrome.history.deleteUrl({ url });
     } catch (error) {
-      // deleteUrl chỉ hỗ trợ URL cụ thể; sẽ bỏ qua ở đây và dùng search bên dưới.
     }
   }
 
@@ -74,23 +73,29 @@ async function clearDomainHistory(hostname) {
   );
 }
 
-async function clearSiteStorageAndCache(origin) {
-  await chrome.browsingData.remove(
-    {
-      origins: [origin]
-    },
-    {
-      appcache: true,
-      cache: true,
-      cacheStorage: true,
-      cookies: true,
-      fileSystems: true,
-      indexedDB: true,
-      localStorage: true,
-      serviceWorkers: true,
-      webSQL: true
-    }
-  );
+async function clearSiteStorageAndCache(origin, options) {
+  const dataToRemove = {};
+  
+  if (options.cache) {
+    dataToRemove.appcache = true;
+    dataToRemove.cache = true;
+    dataToRemove.cacheStorage = true;
+  }
+  
+  if (options.storage) {
+    dataToRemove.fileSystems = true;
+    dataToRemove.indexedDB = true;
+    dataToRemove.localStorage = true;
+    dataToRemove.serviceWorkers = true;
+    dataToRemove.webSQL = true;
+  }
+
+  if (Object.keys(dataToRemove).length > 0) {
+    await chrome.browsingData.remove(
+      { origins: [origin] },
+      dataToRemove
+    );
+  }
 }
 
 async function clearSessionStorageViaTab(tabId) {
@@ -100,34 +105,44 @@ async function clearSessionStorageViaTab(tabId) {
       try {
         window.localStorage.clear();
       } catch (error) {
-        // bỏ qua
       }
 
       try {
         window.sessionStorage.clear();
       } catch (error) {
-        // bỏ qua
       }
     }
   });
 }
 
-async function clearActiveSiteData(tabId, pageUrl) {
+async function clearActiveSiteData(tabId, pageUrl, options) {
   const parsedUrl = new URL(pageUrl);
   const hostname = parsedUrl.hostname;
   const origin = parsedUrl.origin;
   const registrableDomain = getRegistrableDomain(hostname);
 
-  await clearSiteStorageAndCache(origin);
-  await clearSessionStorageViaTab(tabId);
-  await removeCookiesForDomain(hostname);
-
-  if (registrableDomain !== hostname) {
-    await removeCookiesForDomain(registrableDomain);
+  if (options.storage || options.cache) {
+    await clearSiteStorageAndCache(origin, options);
   }
 
-  await clearDomainHistory(hostname);
-  await chrome.tabs.reload(tabId, { bypassCache: true });
+  if (options.storage) {
+    await clearSessionStorageViaTab(tabId);
+  }
+
+  if (options.cookies) {
+    await removeCookiesForDomain(hostname);
+    if (registrableDomain !== hostname) {
+      await removeCookiesForDomain(registrableDomain);
+    }
+  }
+
+  if (options.history) {
+    await clearDomainHistory(hostname);
+  }
+
+  if (options.reload) {
+    await chrome.tabs.reload(tabId, { bypassCache: !!options.cache });
+  }
 }
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
@@ -135,7 +150,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     return false;
   }
 
-  clearActiveSiteData(message.tabId, message.url)
+  clearActiveSiteData(message.tabId, message.url, message.options)
     .then(() => {
       sendResponse({ success: true });
     })

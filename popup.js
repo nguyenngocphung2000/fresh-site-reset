@@ -24,6 +24,14 @@ async function getActiveTab() {
 }
 
 refreshButton.addEventListener("click", async () => {
+  const options = {
+    cookies: document.getElementById("optCookies").checked,
+    storage: document.getElementById("optStorage").checked,
+    cache: document.getElementById("optCache").checked,
+    history: document.getElementById("optHistory").checked,
+    reload: document.getElementById("optReload").checked,
+  };
+
   refreshButton.disabled = true;
   setStatus("Đang phân tích tab hiện tại và dọn dữ liệu website...");
 
@@ -43,15 +51,21 @@ refreshButton.addEventListener("click", async () => {
     const response = await chrome.runtime.sendMessage({
       type: "CLEAR_ACTIVE_SITE_DATA",
       tabId: activeTab.id,
-      url: activeTab.url
+      url: activeTab.url,
+      options: options
     });
 
     if (!response?.success) {
       throw new Error(response?.error || "Không thể xóa dữ liệu của website hiện tại.");
     }
 
-    setStatus("Đã hoàn tất. Trang đang được tải lại...", "success");
-    window.close();
+    if (options.reload) {
+      setStatus("Đã hoàn tất. Trang đang được tải lại...", "success");
+    } else {
+      setStatus("Đã dọn dẹp xong!", "success");
+      refreshButton.disabled = false;
+    }
+    
   } catch (error) {
     setStatus(error.message || "Đã xảy ra lỗi không xác định.", "error");
     refreshButton.disabled = false;
