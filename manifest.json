@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Fresh Site Reset",
   "short_name": "Site Reset",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Xóa sạch dữ liệu của website trong tab hiện tại rồi tự động tải lại trang.",
   "author": "Nothing",
   "homepage_url": "https://example.com/nothing",
@@ -18,19 +18,22 @@
     "<all_urls>"
   ],
   "icons": {
-    "16": "icons/icon.svg",
-    "48": "icons/icon.svg",
-    "128": "icons/icon.svg"
+    "16": "icons/icon_16x16.png",
+    "32": "icons/icon_32x32.png",
+    "48": "icons/icon_48x48.png",
+    "128": "icons/icon_128x128.png"
   },
   "action": {
     "default_title": "Fresh Site Reset",
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "icons/icon.svg",
-      "48": "icons/icon.svg",
-      "128": "icons/icon.svg"
+      "16": "icons/icon_16x16.png",
+      "32": "icons/icon_32x32.png",
+      "48": "icons/icon_48x48.png",
+      "128": "icons/icon_128x128.png"
     }
   },
+
   "background": {
     "service_worker": "background.js"
   }

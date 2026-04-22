@@ -3,17 +3,17 @@
   <desc>Modern shield and refresh icon for browser extension by Nothing.</desc>
   <defs>
     <linearGradient id="bg" x1="16" y1="12" x2="110" y2="116" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#2563EB"/>
-      <stop offset="1" stop-color="#4F46E5"/>
+      <stop offset="0" stop-color="#161616"/>
+      <stop offset="1" stop-color="#0a0a0a"/>
     </linearGradient>
     <linearGradient id="ring" x1="30" y1="28" x2="96" y2="94" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#FFFFFF"/>
-      <stop offset="1" stop-color="#DBEAFE"/>
+      <stop offset="0" stop-color="#ff9d4d"/>
+      <stop offset="1" stop-color="#ff6b00"/>
     </linearGradient>
   </defs>
   <rect x="12" y="12" width="104" height="104" rx="28" fill="url(#bg)"/>
-  <path d="M64 26C49 35 37 36 28 36V62C28 85 42 102 64 108C86 102 100 85 100 62V36C91 36 79 35 64 26Z" fill="rgba(255,255,255,0.14)"/>
-  <path d="M64 34C51.5 41.7 41.6 42.6 34 42.8V61.5C34 81.1 44.3 94.5 64 100C83.7 94.5 94 81.1 94 61.5V42.8C86.4 42.6 76.5 41.7 64 34Z" fill="rgba(255,255,255,0.10)"/>
+  <path d="M64 26C49 35 37 36 28 36V62C28 85 42 102 64 108C86 102 100 85 100 62V36C91 36 79 35 64 26Z" fill="rgba(255, 107, 0, 0.15)"/>
+  <path d="M64 34C51.5 41.7 41.6 42.6 34 42.8V61.5C34 81.1 44.3 94.5 64 100C83.7 94.5 94 81.1 94 61.5V42.8C86.4 42.6 76.5 41.7 64 34Z" fill="rgba(255, 107, 0, 0.08)"/>
   <path d="M63 44C51.4 44 42 53.4 42 65C42 76.6 51.4 86 63 86C72.8 86 81.1 79.3 83.4 70.2H73.7L88.5 55.5L103.3 70.2H93.2C90.7 84.8 78.1 96 63 96C45.9 96 32 82.1 32 65C32 47.9 45.9 34 63 34C73.2 34 82.9 39 88.7 47.4L81.1 52.7C77 47.3 70.4 44 63 44Z" fill="url(#ring)"/>
-  <path d="M64 54C58.2 54 53.5 58.7 53.5 64.5C53.5 70.3 58.2 75 64 75C69.8 75 74.5 70.3 74.5 64.5C74.5 58.7 69.8 54 64 54Z" fill="#BFDBFE"/>
+  <path d="M64 54C58.2 54 53.5 58.7 53.5 64.5C53.5 70.3 58.2 75 64 75C69.8 75 74.5 70.3 74.5 64.5C74.5 58.7 69.8 54 64 54Z" fill="#e2e2e2"/>
 </svg>
